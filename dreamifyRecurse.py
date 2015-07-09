@@ -192,7 +192,11 @@ for l in xrange(0, int(sys.argv[4])):
 	layerF = layer.replace("/", "_")
 	pilimg = PIL.Image.open(output + "_" + str(i) + "_" + layerF + ".jpg")
 	w, h = pilimg.size
-	pilimg = pilimg.crop((10, 8, w - 10, h-8))
+	
+	cropW = int(w/80)
+	cropH = int(h/80)
+	
+	pilimg = pilimg.crop((cropW, cropH, w - cropW, h-cropH))
 	pilimg = pilimg.resize((w,h), PIL.Image.ANTIALIAS)
 	enhancer = ImageEnhance.Contrast(pilimg)
 	pilimg = enhancer.enhance(0.9)
